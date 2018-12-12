@@ -1,0 +1,46 @@
+<!-- modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Excluir</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('xCancel')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Você tem certeza que deseja excluir o pet?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">Não</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('ok')">Sim</button>
+  </div>
+</ng-template>
+<!-- modal -->
+
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-panel *ngFor="let pet of petListUser" title="{{ pet.nome }}" id="{{ pet.id }}">
+    <ng-template ngbPanelContent>
+        <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="maxv">
+                    <img class="image-pet" [src]="pet.photoLink" alt="pet">
+                  </div>
+              </div>
+              <div class="col-md-8">
+                <p><strong>Endereço: </strong>{{ pet.localPet.rua }}</p>
+                <p><strong>Bairro: </strong>{{ pet.localPet.bairro }}</p>
+                <p><strong>Objetivo: </strong>{{ pet.objetivo }}</p>
+                <p><strong>Espécie: </strong>{{ pet.especie }}</p>
+                <p><strong>Sexo: </strong>{{ pet.sexo }}</p>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-sm align-btn">
+                  <button class="btn btn-primary" (click)="infoPet(pet.id)"><i class="fa fa-edit"></i> Editar</button>
+                  <button class="btn btn-danger" (click)="deletePet(pet.id, content)"><i class="fa fa-trash"></i> Apagar</button>
+                </div>
+              </div>
+          </div>      
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

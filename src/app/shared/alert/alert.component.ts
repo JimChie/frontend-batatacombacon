@@ -21,7 +21,7 @@ export class AlertComponent implements OnInit {
   show(type:string, message: string=''){
 
     if(type=='success' && message=='')
-      message = 'Adicionado com sucesso.';
+      message = 'Operação realizada com sucesso.';
     
     if(type=='danger'&& message=='')
       message = 'Ops! Aconteceu algo de errado.';

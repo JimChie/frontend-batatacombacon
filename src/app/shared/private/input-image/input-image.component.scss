@@ -1,0 +1,16 @@
+$marginDefault: 5px;
+
+.showImage {
+  width: 100%;
+  height: auto;
+}
+
+.item {
+  margin: $marginDefault;
+  padding: 15px;
+}
+
+button {
+  margin-top: $marginDefault;
+  margin-left: $marginDefault;
+}

@@ -6,6 +6,10 @@ import { ViewChild } from '@angular/core';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import {Observable, Subject, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { Especie } from 'src/app/classes/especie/especies';
+import { Porte } from 'src/app/classes/porte/porte';
+import { Objetivo } from 'src/app/classes/objetivo/objetivo';
+import { Sexo } from 'src/app/classes/sexo/sexo';
 
 @Component({
   selector: 'app-filter-list-item',
@@ -14,10 +18,10 @@ import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
 })
 export class FilterListItemComponent implements OnInit {
   
-  especies: string[]=[];
-  portes: string[]=[];
-  objetivos: string[]=[];
-  sexos: string[]=[];
+  especies: Especie[]=[];
+  portes: Porte[]=[];
+  objetivos: Objetivo[]=[];
+  sexos: Sexo[]=[];
 
   selectedEspecie: string;
   @ViewChild('instanceEspecie') instanceEspecie: NgbTypeahead;
@@ -30,7 +34,7 @@ export class FilterListItemComponent implements OnInit {
                  this.clickEspecie$.pipe(filter(() => !this.instanceEspecie.isPopupOpen()))
                  ).pipe(
                         map(term => (
-                              term === '' ? this.especies : this.especies.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
+                              term === '' ? this.especies.map(m => m.descricao) : this.especies.map(m => m.descricao).filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
                             )
                         );
   }
@@ -46,7 +50,7 @@ export class FilterListItemComponent implements OnInit {
                  this.clickPorte$.pipe(filter(() => !this.instancePorte.isPopupOpen()))
                  ).pipe(
                         map(term => (
-                              term === '' ? this.portes : this.portes.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
+                              term === '' ? this.portes.map(m => m.descricao) : this.portes.map(m => m.descricao).filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
                             )
                         );
   }
@@ -62,7 +66,7 @@ export class FilterListItemComponent implements OnInit {
                  this.clickObjetivo$.pipe(filter(() => !this.instanceObjetivo.isPopupOpen()))
                  ).pipe(
                         map(term => (
-                              term === '' ? this.objetivos : this.objetivos.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
+                              term === '' ? this.objetivos.map(m => m.descricao) : this.objetivos.map(m => m.descricao).filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
                             )
                         );
   }
@@ -78,7 +82,7 @@ export class FilterListItemComponent implements OnInit {
                  this.clickSexo$.pipe(filter(() => !this.instanceSexo.isPopupOpen()))
                  ).pipe(
                         map(term => (
-                              term === '' ? this.sexos : this.sexos.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
+                              term === '' ? this.sexos.map(m => m.descricao) : this.sexos.map(m => m.descricao).filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
                             )
                         );
   }
@@ -117,12 +121,19 @@ export class FilterListItemComponent implements OnInit {
   }
 
   filtraPetsClick() {
-    this.filterParams["especie"] = this.selectedEspecie===undefined?this.selectedEspecie="":this.selectedEspecie;
-    this.filterParams["porte"] = this.selectedPorte===undefined?this.selectedPorte="":this.selectedPorte;
-    this.filterParams["objetivo"] = this.selectedObjetivo===undefined?this.selectedObjetivo="":this.selectedObjetivo;
-    this.filterParams["sexo"] = this.selectedSexo===undefined?this.selectedSexo="":this.selectedSexo;
+    this.filterParams["especie"] = this.especies.filter(x => x.descricao == this.selectedEspecie).map(m => m.name)[0];
+    this.filterParams["porte"] = this.portes.filter(x => x.descricao == this.selectedPorte).map(m => m.name)[0];
+    this.filterParams["objetivo"] = this.objetivos.filter(x => x.descricao == this.selectedObjetivo).map(m => m.name)[0];
+    this.filterParams["sexo"] = this.sexos.filter(x => x.descricao == this.selectedSexo).map(m => m.name)[0];
 
     this.sendMessage(this.filterParams);
+  }
+
+  limpaFiltros(){
+    this.selectedEspecie = '';
+    this.selectedObjetivo = '';
+    this.selectedPorte= '';
+    this.selectedSexo = '';
   }
 
   sendMessage(selecteds) {

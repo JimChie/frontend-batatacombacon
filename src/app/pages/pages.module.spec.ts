@@ -1,6 +1,6 @@
 import { PagesModule } from './pages.module';
 
-describe('PagesModule', () => {
+xdescribe('PagesModule', () => {
   let pagesModule: PagesModule;
 
   beforeEach(() => {

@@ -1,24 +1,12 @@
-.formularioEditCadastro {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-  
-  .titulocadastro {
-      padding-top: 15px;
-      padding-bottom: 5px;
-      text-align: center;
-  }
-  
-  .formEditCadastro {
-    width: 90%;
-    max-width: 600px;
-    margin: auto;
-}
-
 .editProfile {
     margin-top: 2rem;
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-bottom: 2rem;
+}
+
+.pets-data {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
 }

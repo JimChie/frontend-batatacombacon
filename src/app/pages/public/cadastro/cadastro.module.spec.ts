@@ -1,6 +1,6 @@
 import { CadastroModule } from './cadastro.module';
 
-describe('CadastroModule', () => {
+xdescribe('CadastroModule', () => {
   let cadastroModule: CadastroModule;
 
   beforeEach(() => {

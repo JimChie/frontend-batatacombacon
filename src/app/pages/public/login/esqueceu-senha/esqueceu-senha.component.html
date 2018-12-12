@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title">Esqueceu sua senha?</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formEmail">
+    <label for="inputemail">Insira seu email no campo abaixo.</label>
+    <input type="email" class="form-control" formControlName="email"
+    autofocus
+    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">  
+    <div *ngIf="submitted && f.email.errors">
+      <div class= "is-invalid-text" *ngIf="f.email.errors?.required">Preencha o email</div>
+      <div class= "is-invalid-text" *ngIf="f.email.errors?.email">Digite um email válido</div>
+    </div>
+  </form>
+  </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-sm btn-primary" (click)="activeModal.close('Close click')">Fechar</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="requestNovaSenha()">Enviar</button>
+</div>

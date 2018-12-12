@@ -18,7 +18,7 @@ export class BadgeStatusComponent implements OnInit {
   setClass(bdgColor){
     const classValues = {
       'badge': true,
-      'float-right': true,
+      //'float-right': true,
       'badge-success': false,
       'badge-danger': false,
       'badge-warning': false,

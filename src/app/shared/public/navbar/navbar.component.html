@@ -1,26 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-  <a class="navbar-brand" routerLink="">
-      <img src="./assets/dog.svg" width="30" height="30" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen}" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-          <a class="nav-link" routerLink="">Discover pets<span class="sr-only">(current)</span></a>
-      </li>
-      </ul>
-      <ul class="navbar-nav">
-      <li class="nav-item">
-          <a class="nav-link" routerLink="/cadastro">Cadastro</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Login</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" routerLink="/contato">Contato</a>
-      </li>
-      </ul>
-  </div>
+<nav class="navbar navbar-expand-lg justify-content-between">
+    <a class="navbar-brand" routerLink="">
+        <img src="./assets/dog.svg" width="30" height="30" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="">Discover pets<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item" *ngIf="isLogged$ | async">
+                <div container="body" placement="bottom-right" ngbDropdown>
+                    <a href id="basic-link" class="nav-link" ngbDropdownToggle (click)="false" aria-controls="basic-link-dropdown">Minha Conta</a>
+                    <div id="basic-link-dropdown" ngbDropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
+                        <div>
+                            <h6 class="dropdown-header">{{ (userLogged$ | async)?.email }}</h6>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                        <a class="dropdown-item" routerLink="/addpet" >Adicionar Pets</a>
+                        <a class="dropdown-item" routerLink="/profile" >Editar Conta</a>
+                        <a class="dropdown-item" routerLink="" (click)="onLogout()">Sair</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item" *ngIf="!(isLogged$ | async)">
+                <a class="nav-link" routerLink="/cadastro">Cadastro</a>
+            </li>
+            <li class="nav-item" *ngIf="!(isLogged$ | async)">
+                <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="/contato">Contato</a>
+            </li> -->
+        </ul>
+    </div>
 </nav>

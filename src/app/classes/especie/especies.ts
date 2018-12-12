@@ -1,4 +1,4 @@
 export class Especie {
-    id: number;
-    nome: string;
+    name: string;
+    descricao: string;
 }

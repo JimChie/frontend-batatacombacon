@@ -1,20 +1,45 @@
-<div class="text-center signin-petsave">
-  <form class="form-signin">
+<div class="text-center signin-petsave" >
+  
+  <form class="form-signin"
+  [formGroup]="loginUser"
+  (submit)="submitClick($event)">
+
     <img class="mb-4 rounded" src="./assets/dog.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Salve um PET!</h1>
-    <label for="inputEmail" class="sr-only">E-mail</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
-    <div class="d-inline-block mb-2 mt-0">
-      <a class="mr-5" href="#">Esqueceu senha</a>
-      <a class="ml-5" href="#">Cadastrar</a>
-    </div>  
-    <div class="checkbox mb-2 float-left" >
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
+    <h1 class="h3 mb-3">Salve um PET!</h1>
+  
+    <div class="form-row mb-2">
+      
+      <div class="form-group col-md-12 mb-2">
+        <input class="form-control" 
+          placeholder="Email"
+          formControlName="email"
+          autofocus
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <div *ngIf="submitted && f.email.errors">
+          <div class= "is-invalid-text" *ngIf="f.email.errors?.required">Preencha o email</div>
+          <div class= "is-invalid-text" *ngIf="f.email.errors?.email">Digite um email válido</div>
+        </div>
+      </div>
+      
+      <div class="form-group col-md-12 mb-2">
+        <input
+          placeholder="Senha"
+          type="password" 
+          class="form-control" 
+          formControlName="senha"
+          [ngClass]="{ 'is-invalid': submitted && f.senha.errors }">
+        <div *ngIf="submitted && f.senha.errors">
+          <div class= "is-invalid-text" *ngIf="f.senha.errors?.required">Coloque uma senha</div>
+        </div>
+      </div>
+      <button 
+      type="submit" 
+      class="btn-entrar btn btn-primary btn-block">Entrar</button>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    <app-alert></app-alert>
   </form>
+  <div class="col-md-12 d-block mb-5">
+    <button class="btn-link btn-sm btnEsqueceuSenha" (click)="openEsqueceuSenha()">Esqueceu Senha</button>
+    <button class="btn-link btn-sm btnCadastro" (click)="redirectToCadastro()">Cadastrar</button>
+  </div> 
 </div>

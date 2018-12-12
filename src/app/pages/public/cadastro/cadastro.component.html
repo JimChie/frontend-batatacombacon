@@ -1,8 +1,10 @@
-<div class="titulocadastro">
-  <img src="./assets/dog.svg" class="rounded mb-2" alt="">
-  <h1>Cadastro</h1>
+<div class="cadastro-user">
+  <div class="titulocadastro">
+    <img src="./assets/dog.svg" class="rounded mb-2" alt="">
+    <h1>Cadastro</h1>
+  </div>
+  
+  <app-alert></app-alert>
+  
+  <app-form-user btnText="Cadastrar" (messageEvent)=receiveClickAddUser($event)></app-form-user>
 </div>
-
-<app-alert></app-alert>
-
-<app-form-user (messageEvent)=receiveClickAddUser($event)></app-form-user>

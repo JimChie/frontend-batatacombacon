@@ -2,51 +2,12 @@
 
 <div class="row editProfile">
   <div class="col-md-6">
-    <app-form-user (messageEvent)=receiveClickEditUser($event) [usuarioProfile]="usuario"></app-form-user>
-    <!-- <div class="form-row mb-2">
-        <div class="form-group col-md-5 mb-2">
-          <label for="inputnome">Nome</label>
-          <p>Jim</p>
-        </div>
-        <div class="form-group col-md-7 mb-2">
-          <label for="inputnome">Sobrenome</label>
-          <p>Chien</p>
-        </div>
-        <div class="form-group col-md-12 mb-2">
-          <label for="inputemail">E-mail</label>
-          <p>email@email.com</p>  
-        </div>
-        <div class="form-group col-md-12 mb-2">
-          <label>Pets</label>
-          <a>Link dos Pets</a>  
-        </div>
-    </div> -->
+    <app-form-user btnText="Editar" (messageEvent)=receiveClickEditUser($event) [usuarioProfile]="usuario"></app-form-user>
   </div>
-  <div class="formularioEditCadastro col-md-6">
-    <form class="formEditCadastro">
-      <div class="form-row mb-2">
-        <div class="form-group col-md-5 mb-2">
-          <label for="inputnome">Nome</label>
-          <input type="text" class="form-control" id= "inputnome" placeholder="Nome">
-        </div>
-        <div class="form-group col-md-7 mb-2">
-          <label for="inputnome">Sobrenome</label>
-          <input type="text" class="form-control" id= "inputsobrenome" placeholder="Sobrenome">
-        </div>
-        <div class="form-group col-md-12 mb-2">
-          <label for="inputemail">E-mail</label>
-          <input type="email" class="form-control" id= "inputemail" placeholder="E-mail">
-        </div>
-        <div class="form-group col-md-12 mb-2">
-          <label for="inputsenha">Senha</label>
-          <input type="password" class="form-control" id= "inputsenha" placeholder="Senha">
-        </div>
-        <div class="form-group col-md-12 mb-3">
-          <label for="inputrepetirsenha">Repetir senha</label>
-          <input type="password" class="form-control" id= "inputrepetirsenha" placeholder="">
-        </div>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Editar</button>
-    </form>
+  <div class="col-md-6">
+    <div class="pets-data">
+      <h3>Meus pets</h3>
+      <app-pets-list [petListUser]="pets" (msgDeletePet)="msgDeletePet($event)"></app-pets-list>
+    </div>
   </div>
 </div>

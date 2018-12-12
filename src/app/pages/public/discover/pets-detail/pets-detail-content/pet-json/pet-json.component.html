@@ -1,51 +1,107 @@
-<!-- <p>{{pet | json}}</p> -->
-<div class="container">
-    <div class="petTitle">
-        <h1>{{ pet.nome }}</h1>
-    </div>
+<div class="container mt-4">
     <div class="row petContent">
-        <div class="col-md-7 petDivPhoto">
-            <div class="pet-image-container" style="cursor: default;">
-                <div class="pet-image-dummy"></div>
-                <img class="pet-image-url" src="{{ pet.imagem }}" alt="your image">
-            </div>      
-        </div>
-        <div class="col-md-5 petInfo">
-            <div>
-                <span><strong>Nome: </strong></span>
-                <span>{{ pet.nome }}</span>
-            </div>
-            <div>
-                <span><strong>Espécie: </strong></span>
-                <span>{{ pet.especie }}</span>
-            </div>
-            <div>
-                <span><strong>Porte: </strong></span>
-                <span>{{ pet.porte }}</span>
-            </div>
-            <div>
-                <span><strong>Sexo: </strong></span>
-                <span>{{ pet.macho }}</span>
-            </div>
-            <div>
-                <span><strong>Objetivo: </strong></span>
-                <span>{{ pet.objetivo }}</span>
-            </div>
-            <div>
-                <span><strong>Data: </strong></span>
-                <span>{{ pet.dataPet | date: 'dd/MM/yyyy' }}</span>
-            </div>
-            <div>
-                <span><strong>Localização: </strong></span>
-                <span>{{ pet.localPet }}</span>
+        <div class="col-md-6 petDivPhoto">
+            <div class="m-auto">
+                <img class="pet-image-url" [src]="pet?.photoLink">
             </div>
         </div>
-        <div class="col-md-12 petDescription">
-            <label><strong>Descrição: </strong></label>
-            <!-- <p>{{ pet.descricao }}</p> -->
+        <div class="col-md-6">
+            <div class="petInfo">
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Nome </strong>
+                        <p>{{ pet?.nome }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Adicionado em </strong>
+                        <p>{{ pet?.created_at | date: 'dd/MM/yyyy' }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Espécie </strong>
+                        <p>{{ pet?.especie }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Porte </strong>
+                        <p>{{ pet?.porte }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Sexo </strong>
+                        <p>{{ pet?.sexo }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Objetivo </strong>
+                        <p>{{ pet?.objetivo }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Descrição </strong>
+                        <p>{{ pet?.descricao }}</p>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="petLocal">
+                <div class="row">
+                    <div class="col-md-8">
+                        <strong>Rua </strong>
+                        <p>{{ pet?.localPet.rua }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Número </strong>
+                        <p>{{ pet?.localPet.numero }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <strong>Bairro </strong>
+                        <p>{{ pet?.localPet.bairro }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Cidade</strong>
+                        <p>{{ pet?.localPet.cidade }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>UF</strong>
+                        <p>{{ pet?.localPet.uf }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Complemento </strong>
+                        <p>{{ pet?.localPet.complemento }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Referência </strong>
+                        <p>{{ pet?.localPet.referencia }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="btnVoltar">
-        <button type="button" class="btn btn-primary" (click)="goBack()">Voltar</button>
+    <div class="btnDiv row">
+        <div class="col-md-1 btnVoltar">
+            <button type="button" class="btn btn-primary" (click)="goBack()">Voltar</button>
+        </div>
+        <div class="col-md-8"></div>
+        <div class="col-md-3 btnShare">
+            <share-buttons [theme]="'circles-dark'"
+            [include]="['facebook','twitter','whatsapp','copy']"
+            [show]="4"
+            [showText]="true"
+            [size]="-4"
+            [title]="title"
+            [description]="pet.descricao"
+            [image]="pet.photoLink"
+            ></share-buttons>
+        </div>
     </div>
+    <disqus [identifier]="pageIdentifier" [url]="pageUrl"></disqus>
 </div>

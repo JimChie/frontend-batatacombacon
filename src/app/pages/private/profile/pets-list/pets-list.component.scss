@@ -1,0 +1,52 @@
+.align-btn{
+    text-align: center;
+    margin-top: 10px;
+
+    button {
+        margin-bottom: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+
+.maxv {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    max-height: 200px;
+    display: flex;
+  
+    .image-pet {
+      width: 100%;
+      height: 10vw;
+      object-fit: cover;
+      //margin: auto;  /* Magic! */
+    }
+  
+  }
+
+::ng-deep .card-header {
+    padding: 0.25rem;
+}
+
+p {
+    margin-bottom: 3px;
+}
+
+@media (max-width: 576px) {
+    .maxv {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        max-height: 200px;
+        display: flex;
+      
+        .image-pet {
+          width: 100%;
+          height: 40vw;
+          object-fit: cover;
+          //margin: auto;  /* Magic! */
+        }
+      
+      }
+  }

@@ -1,7 +1,26 @@
 .filter {
-    margin: 10px;
-  
-    .row .col-sm{
-      margin: 5px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 5px;
+
+  div {
+    padding-inline-end: 10px;
+    margin: auto;
+    .btnDiv{
+      margin-top: 35px;
+
+      button {
+        position: relative;
+        bottom: 0px;
+      }
+
+      .btnSearch {
+        float: left;
+      }
+      .btnClean {
+        float: right;
+      }
     }
   }
+}

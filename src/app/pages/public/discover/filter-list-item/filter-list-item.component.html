@@ -1,7 +1,8 @@
 <div class="filter">
     <div class="row">
-        <div class='col-sm'>
-                <input
+        <div class='col-sm-3'>
+            <label for="firstName">Espécie</label>
+            <input
                 id="typeahead-focus"
                 type="text"
                 class="form-control"
@@ -9,11 +10,10 @@
                 [ngbTypeahead]="searchEspecies"
                 (focus)="focusEspecie$.next($event.target.value)"
                 (click)="clickEspecie$.next($event.target.value)"
-                #instanceEspecie="ngbTypeahead"
-                placeholder="Espécie"
-              />
-            </div>
-        <div class='col-sm'>
+                #instanceEspecie="ngbTypeahead"/>
+        </div>
+        <div class='col-sm-2'>
+            <label for="firstName">Porte</label>
             <input
                 id="typeahead-focus"
                 type="text"
@@ -22,10 +22,10 @@
                 [ngbTypeahead]="searchPortes"
                 (focus)="focusPorte$.next($event.target.value)"
                 (click)="clickPorte$.next($event.target.value)"
-                #instancePorte="ngbTypeahead"
-                placeholder="Porte"/>
+                #instancePorte="ngbTypeahead"/>
         </div>
-        <div class='col-sm'>
+        <div class='col-sm-3'>
+            <label for="firstName">Objetivo</label>
             <input
                 id="typeahead-focus"
                 type="text"
@@ -34,10 +34,10 @@
                 [ngbTypeahead]="searchObjetivos"
                 (focus)="focusObjetivo$.next($event.target.value)"
                 (click)="clickObjetivo$.next($event.target.value)"
-                #instanceObjetivo="ngbTypeahead"
-                placeholder="Objetivo"/>
+                #instanceObjetivo="ngbTypeahead"/>
         </div>
-        <div class='col-sm'>
+        <div class='col-sm-2'>
+            <label for="firstName">Sexo</label>
             <input
                 id="typeahead-focus"
                 type="text"
@@ -46,11 +46,11 @@
                 [ngbTypeahead]="searchSexos"
                 (focus)="focusSexo$.next($event.target.value)"
                 (click)="clickSexo$.next($event.target.value)"
-                #instanceSexo="ngbTypeahead"
-                placeholder="Sexo"/>
+                #instanceSexo="ngbTypeahead"/>
         </div>
-        <div class='col-sm'>
-            <button type="button" class="btn btn-primary" (click)="filtraPetsClick()">Filtrar</button>
+        <div class='col-sm-2 text-center btnDiv'>
+            <button type="button" class="btn btn-sm btnSearch btn-success" (click)="filtraPetsClick()"><i class="fa fa-search" aria-hidden="true"></i> Filtrar</button>
+            <button type="button" class="btn btn-sm btnClean btn-warning" (click)="limpaFiltros()"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button>
         </div>
     </div>
 </div>

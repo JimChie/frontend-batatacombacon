@@ -1,18 +1,19 @@
 <div class="container">
-  <div class='row card-list-pet'>
-    <div *ngFor="let pet of petsFromService" class="card col-md-4">
-      <img class="card-img-top" [src]="pet.imagem" alt="Card image cap">
-      <div class="card-body d-flex flex-column">
-        <div class="row">
-          <div class="col-sm">
-            <h5 class="card-title float-left">{{ pet.nome }}</h5>
-            <app-badge-status [childObjetivo]="pet.objetivo"></app-badge-status>
+    <div class="row">
+        <div *ngFor="let pet of petsFromService" class="card col-md-4">
+            <div class="card-body m-auto">
+              <div class="maxv">
+                <img class="card-img-top" [src]="pet.photoLink"  (error)="errorHandler($event)" alt="Card image cap">
+              </div>
+              <div class="info">
+                  <p class="card-text"><app-badge-status class="" [childObjetivo]="pet.objetivo"></app-badge-status></p>  
+                  <h5 class="card-title">{{ pet.nome }}</h5>
+                  <p class="card-text">{{ pet.localPet.uf }} - {{ pet.localPet.cidade }}</p>
+                  <p class="card-text">{{ pet.localPet.rua }}</p>
+                  <a routerLink="/pet/{{pet.id}}" class="btn btn-info btn-sm text-center mt-auto ">+ informações</a>
+              </div>
+            </div> 
           </div>
-        </div>
-        <p class="card-text">{{ pet.especie }}</p>
-        <a routerLink="/pet/{{pet.id}}" class="btn btn-info float-right btn-sm text-center mt-auto ">+ informações</a>
-      </div>
-    </div>
-  </div>
+     </div>
 </div>
-
+ 

@@ -20,4 +20,7 @@ export class PetsListItemComponent implements OnInit {
     this.location.back();
   }
 
+  errorHandler(event) {
+    event.target.src = "./assets/undraw_Cautious_dog_q83f.png";
+ }
 }

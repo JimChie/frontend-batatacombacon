@@ -1,2 +1,10 @@
 <app-filter-list-item (messageEvent)="receiveMessage($event)"></app-filter-list-item>
 <app-pets-list-item [petsFromService]="pets"></app-pets-list-item>
+
+<div
+  infiniteScroll
+  [immediateCheck]="true"
+  [infiniteScrollDistance]="3"
+  [infiniteScrollThrottle]="500"
+  (scrolled)="onScroll()">
+</div>

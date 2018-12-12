@@ -1,0 +1,15 @@
+<div class="container mt-3">
+ 
+  <app-alert></app-alert>
+
+  <div class="row">
+    <div class="col-md-6 text-center petPhoto pt-2">
+      <div>
+        <app-input-image [imagePetEdit]="imagePet" [creatingNewPet]="creatingNewPet" [recemEditado]="recemEditado"></app-input-image>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <app-form-pet buttonText="Editar" [petToEdit]="pet" (messageEvent)="receiveFormPet($event)"></app-form-pet>
+    </div>
+  </div>
+</div>

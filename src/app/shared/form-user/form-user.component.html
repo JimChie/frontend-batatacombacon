@@ -1,10 +1,10 @@
-<div class="formularioCadastro">
-    <form class="formcadastro"
+<div class="container formularioCadastro">
+  <form class="formcadastro"
     [formGroup]="usuario"
     (submit)="submitClick($event)">
     
     <div class="form-row mb-2">
-      <div class="form-group col-md-7 mb-2">
+      <div class="form-group col-md-12 mb-2">
         <label for="inputnome">Nome</label>
         <input class="form-control" 
         formControlName="nome"
@@ -14,12 +14,6 @@
           <div class= "is-invalid-text" *ngIf="f.nome.errors?.required">Preencha o nome</div>
         </div>
       </div>     
-      <div class="form-group col-md-5 mb-2">
-        <label for="inputnome">Sobrenome</label>
-        <input class="form-control" 
-        formControlName="sobrenome"
-        autofocus>  
-      </div>
       <div class="form-group col-md-12 mb-2">
         <label for="inputemail">E-mail</label>
         <input class="form-control" 
@@ -54,10 +48,11 @@
           <div class= "is-invalid-text" *ngIf="f.confirmSenha.errors?.ConfirmPassword">A senha não é a mesma</div>
         </div>
       </div>
-      <button class="btn btn-lg btn-primary btn-block mb-4" 
-      type="submit" 
-      class="btn btn-primary btn-block">Cadastrar</button>
+      <div class="col-md-12 mb-4">
+        <button class="btn btn-lg btn-primary btn-block" 
+        type="submit" 
+        class="btn btn-primary btn-block">{{ btnText }}</button>
+      </div>
     </div>
-    
   </form>
 </div>

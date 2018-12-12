@@ -1,0 +1,195 @@
+<form [formGroup]="petForm" (submit)="submitPet($event)">
+    <div class="petInfo pt-2 pb-2">
+      <div class="form-group">
+        <label for="staticName" class="col-sm"><strong>Nome:</strong></label>
+        <div class="col-sm m-auto">
+          <input type="text" class="form-control form-control-sm" id="staticName"
+          formControlName="nome"
+          autofocus
+          [ngClass]="{ 'is-invalid': submitted && f.nome.errors }"> 
+        </div>
+        <div *ngIf="submitted && f.nome.errors">
+          <div class= "is-invalid-text col-md-12" *ngIf="f.nome.errors?.required">Preencha o nome</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6">
+          <label for="staticEspecie" class="col-sm"><strong>Espécie:</strong></label>
+          <div class="col-sm m-auto">
+            <select 
+            class="form-control" 
+            id="staticEspecie" 
+            formControlName="especie" 
+            autofocus
+            [ngClass]="{ 'is-invalid': submitted && f.especie.errors }">
+            <option [value]="" disabled selected>Selecione...</option>
+            <option [value]="item.name" *ngFor="let item of especies">{{ item.descricao }}</option>
+          </select>
+        </div>
+        <div *ngIf="submitted && f.especie.errors"> 
+          <div class= "is-invalid-text col-md-12" *ngIf="f.especie.errors?.required">Selecione a espécie</div>
+        </div>  
+      </div>
+      <div class="col-md-6">
+        <label for="staticPorte" class="col-sm"><strong>Porte:</strong></label>
+        <div class="col-sm m-auto">
+          <select 
+          class="form-control" 
+          id="staticPorte" 
+          formControlName="porte" 
+          autofocus
+          [ngClass]="{ 'is-invalid': submitted && f.porte.errors }">
+          <option [value]="" disabled selected>Selecione...</option>
+          <option [value]="item.name" *ngFor="let item of portes">{{ item.descricao }}</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f.porte.errors">
+        <div class= "is-invalid-text col-md-12" *ngIf="f.porte.errors?.required">Selecione o porte</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6">
+      <label for="staticSexo" class="col-sm"><strong>Sexo:</strong></label>
+      <div class="col-sm m-auto">
+        <select 
+        class="form-control" 
+        id="staticSexo" 
+        formControlName="sexo" 
+        autofocus
+        [ngClass]="{ 'is-invalid': submitted && f.sexo.errors }">
+        <option [value]="" disabled selected>Selecione...</option>
+        <option [value]="item.name" *ngFor="let item of sexos">{{ item.descricao }}</option>
+      </select>
+    </div>
+    <div *ngIf="submitted && f.sexo.errors">
+      <div class= "is-invalid-text col-md-12" *ngIf="f.sexo.errors?.required">Selecione o sexo</div>
+    </div>  
+  </div>
+  <div class="col-md-6">
+    <label for="staticStatus" class="col-sm-3"><strong>Objetivo:</strong></label>
+    <div class="col-sm-auto">
+      <select 
+      class="form-control" 
+      id="staticStatus" 
+      formControlName="objetivo" 
+      autofocus
+      [ngClass]="{ 'is-invalid': submitted && f.objetivo.errors }">
+      <option [value]="" disabled selected>Selecione...</option>
+      <option [value]="item.name" *ngFor="let item of objetivos">{{ item.descricao }}</option>
+    </select>
+  </div>
+  <div *ngIf="submitted && f.objetivo.errors">
+    <div class= "is-invalid-text col-md-12" *ngIf="f.objetivo.errors?.required">Selecione um objetivo</div>
+  </div>
+  </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm" for="staticDescricao"><strong>Descrição:</strong></label>
+    <div class="col-sm-12 m-auto">
+      <textarea formControlName="descricao" class="form-control form-control-sm" id="staticDescricao" rows="2" formControlName="descricao"></textarea>
+    </div>
+  </div>
+  </div>
+  <div class="petLocal pt-2 pb-2">
+  
+    <div formGroupName="localPet">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="cepNum" class="col-md-auto"><strong>Cep:</strong></label>
+          <div class="col-md-auto">
+            <input type="text" class="form-control form-control-sm" id="cepNum"
+            formControlName="cep"
+            autofocus
+            [ngClass]="{ 'is-invalid': submitted && f.localPet['controls'].cep.errors }" (keyup)="keyUp($event)">
+          </div>
+        </div>
+        <div class="form-group col-md mt-auto loadingIcon">
+          <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loadingCep"></i>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="cepUf" class="col-sm"><strong>UF:</strong></label>
+          <div class="col-sm m-auto">
+            <input type="text" class="form-control form-control-sm" id="cepUf" 
+            formControlName="uf"
+            autofocus
+            [ngClass]="{ 'is-invalid': submitted && f.localPet['controls'].uf.errors }">
+          </div>
+          <div *ngIf="submitted && f.localPet['controls'].uf.errors">
+            <div class= "is-invalid-text col-md-12" *ngIf="f.localPet['controls'].uf.errors?.required">Preencha a UF</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="cepCidade" class="col-sm"><strong>Cidade:</strong></label>
+          <div class="col-sm m-auto">
+            <input type="text" class="form-control form-control-sm" id="cepCidade" 
+            formControlName="cidade"
+            autofocus
+            [ngClass]="{ 'is-invalid': submitted && f.localPet['controls'].cidade.errors }" >
+          </div>
+          <div *ngIf="submitted && f.localPet['controls'].cidade.errors">
+            <div class= "is-invalid-text col-md-12" *ngIf="f.localPet['controls'].cidade.errors?.required">Preencha a cidade</div>
+          </div>
+        </div>
+        <div class="form-group col-md-5">
+          <label for="cepBairro" class="col-sm"><strong>Bairro:</strong></label>
+          <div class="col-sm m-auto">
+            <input type="text" class="form-control form-control-sm" id="cepBairro" 
+            formControlName="bairro"
+            autofocus
+            [ngClass]="{ 'is-invalid': submitted && f.localPet['controls'].bairro.errors }" >
+          </div>
+          <div *ngIf="submitted && f.localPet['controls'].bairro.errors">
+            <div class= "is-invalid-text col-md-12" *ngIf="f.localPet['controls'].bairro.errors?.required">Preencha o bairro</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label for="cepRua" class="col-sm"><strong>Rua:</strong></label>
+          <div class="col-sm m-auto">
+            <input type="text" class="form-control form-control-sm" id="cepRua" 
+            formControlName="rua"
+            autofocus
+            [ngClass]="{ 'is-invalid': submitted && f.localPet['controls'].rua.errors }" >
+          </div>
+          <div *ngIf="submitted && f.localPet['controls'].rua.errors">
+            <div class= "is-invalid-text col-md-12" *ngIf="f.localPet['controls'].rua.errors?.required">Preencha a rua</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="cepNumero" class="col-sm"><strong>Numero:</strong></label>
+          <div class="col-sm m-auto">
+            <input type="text" class="form-control form-control-sm" id="cepNumero" 
+            formControlName="numero"
+            autofocus>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cepComplemento" class="col-sm"><strong>Complemento:</strong></label>
+          <div class="col-sm m-auto">
+            <input type="text" class="form-control form-control-sm" id="cepComplemento" 
+            formControlName="complemento"
+            autofocus>
+          </div> 
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cepReferencia" class="col-sm"><strong>Referência:</strong></label>
+          <div class="col-sm m-auto">
+            <input type="text" class="form-control form-control-sm" id="cepReferencia"
+            formControlName="referencia"
+            autofocus>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">{{ buttonText }}</button>
+  </div>
+  </form>
+  

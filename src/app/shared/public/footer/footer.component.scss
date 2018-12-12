@@ -1,21 +1,76 @@
-.footer{
-    margin: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    color: #999;
-    text-align: left;
-    background-color: #f9f9f9;
-  
-    p {
-      margin-bottom: 0;
-      margin-left: 20px;
-    }
+$fontColor: #0000009c;
 
-    p.header {
-      padding-bottom: 10px;
-    }
+.navbar {
+  background-color: #f4a261;
+  padding-top: 25px;
+}
+
+a {
+  color: $fontColor;
+}
+
+p {
+  color: $fontColor;
+  margin-bottom: 0;
+  margin-left: 20px;
+
+  text-align: justify;
   
-    p:last-child{
-      margin-bottom: 0;
+  .header {
+    padding-bottom: 10px;
+  }
+  
+  :last-child {
+    margin-bottom: 0;
+  }
+  
+}
+
+.row {
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-bottom: 0.5%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.githubIcon {
+  text-align: center;
+
+  button {
+    padding: 0;
+    border: none;
+    background: none;
+    vertical-align: middle;
+  }
+}
+
+ul {
+  list-style-type: none;
+  margin-left: 20px;
+  padding-inline-start: 15px;
+
+  li {
+    .linkApoiadores {
+      padding: 0;
+      border: none;
+      background: none;
+      outline: none;
+      color: #0000009c;
+      margin: auto;
+      font-size: 1rem;
     }
+  }
+}
+
+@media (max-width: 576px) {
+  p {
+    text-align: justify;
+    margin: 0px;
+  }
+
+  .header {
+    margin-top: 10px;
+  }
 }

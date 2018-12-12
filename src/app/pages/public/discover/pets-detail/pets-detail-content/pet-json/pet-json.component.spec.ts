@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PetJsonComponent } from './pet-json.component';
 
-describe('PetJsonComponent', () => {
+xdescribe('PetJsonComponent', () => {
   let component: PetJsonComponent;
   let fixture: ComponentFixture<PetJsonComponent>;
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { Objetivo } from '../classes/objetivo/objetivo';
 import { Porte } from '../classes/porte/porte';
@@ -8,7 +8,6 @@ import { Sexo } from '../classes/sexo/sexo';
 
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { HandleError } from '../classes/handleErrors';
 
 @Injectable({
     providedIn: 'root'
@@ -16,47 +15,54 @@ import { HandleError } from '../classes/handleErrors';
 
 export class FilterService {
     
-    private filterUrl = 'https://srv-fake-api.herokuapp.com';
+    private filterUrl = 'https://backendcombacon.herokuapp.com';
     
-    private handleError = new HandleError();
-    
-    constructor(
-        private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) { }
 
-    getEspecies(): Observable<string[]>{
-        return this.http.get<Especie[]>(`${this.filterUrl}/especies`)
-       .pipe(
-           map(response => response.map(r => r.nome)),
-           //tap(_ => this.log('fetched pets')),
-           catchError(this.handleError.handleThis('getEspecies', []))
+    getEspecies(): Observable<Especie[]>{
+        return this.http.get<Especie[]>(`${this.filterUrl}/especies`).pipe(
+           catchError(this.handleError)
        );
     }
 
-    getPortes(): Observable<string[]>{
-        return this.http.get<Porte[]>(`${this.filterUrl}/portes`)
-       .pipe(
-           map(response => response.map(r => r.tamanho)),
-           //tap(_ => this.log('fetched pets')),
-           catchError(this.handleError.handleThis('getPortes', []))
+    getPortes(): Observable<Porte[]>{
+        return this.http.get<Porte[]>(`${this.filterUrl}/porte`).pipe(
+           catchError(this.handleError)
        );
     }
 
-    getObjetivos(): Observable<string[]>{
-        return this.http.get<Objetivo[]>(`${this.filterUrl}/objetivos`)
-       .pipe(
-           map(response => response.map(r => r.descricao)),
-           //tap(_ => this.log('fetched pets')),
-           catchError(this.handleError.handleThis('getObjetivos', []))
+    getObjetivos(): Observable<Objetivo[]>{
+        return this.http.get<Objetivo[]>(`${this.filterUrl}/objetivos`).pipe(
+           catchError(this.handleError)
        );
     }
     
-    getSexos(): Observable<string[]>{
-        return this.http.get<Sexo[]>(`${this.filterUrl}/sexos`)
-       .pipe(
-           map(response => response.map(r => r.descricao)),
-           //tap(_ => this.log('fetched pets')),
-           catchError(this.handleError.handleThis('getSexos', []))
+    getSexos(): Observable<Sexo[]>{
+        return this.http.get<Sexo[]>(`${this.filterUrl}/sexo`).pipe(
+           catchError(this.handleError)
        );
     }
+
+    private handleError(error: any) { 
+
+        const ret = {status: error.status,
+                        message: ""};
+
+        if(error.status===404){
+            ret.message = "Usuário não encontrado."
+            return throwError(ret);
+        }
+
+        if(error.status===400){
+            ret.message = "Bad request."
+            return throwError(ret);
+        }
+
+        if(error.status===401){
+            ret.message = "Você não tem autorização"
+            return throwError(ret);
+        }
+        
+        return throwError(error);
+        }
 }

@@ -11,6 +11,7 @@ import { Usuario } from 'src/app/classes/usuario/usuario';
 export class FormUserComponent implements OnInit, OnChanges {
   
   @Input() usuarioProfile: Usuario;
+  @Input() btnText: string;
   @Output() messageEvent = new EventEmitter<FormGroup>();
   
   usuario: FormGroup;

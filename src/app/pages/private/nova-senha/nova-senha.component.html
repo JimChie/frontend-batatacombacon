@@ -1,0 +1,35 @@
+<app-alert></app-alert>
+<div class="titulocadastro">
+  <img src="./assets/dog.svg" class="rounded mb-2" alt="">
+  <h1>Redefinição de senha</h1>
+</div>
+<div class="container senhaContainer">
+  <form [formGroup]="novaSenhaForm" (submit)="clickConfirma($event)">
+    <div class="form-group col-md-12 mb-2">
+      <label for="inputsenha">Senha</label>
+      <input
+      type="password" 
+      class="form-control" 
+      formControlName="senha"
+      [ngClass]="{ 'is-invalid': submitted && f.senha.errors }">
+      <div *ngIf="submitted && f.senha.errors">
+        <div class= "is-invalid-text" *ngIf="f.senha.errors?.required">Coloque uma senha</div>
+        <div class= "is-invalid-text" *ngIf="f.senha.errors?.minlength">Ao menos 6 caracteres</div>
+      </div>
+    </div>
+    <div class="form-group col-md-12 mb-3">
+      <label for="inputrepetirsenha">Confirmar senha</label>
+      <input
+      type="password" 
+      class="form-control" 
+      formControlName="confirmSenha"
+      [ngClass]="{ 'is-invalid': submitted && f.confirmSenha.errors }">
+      <div *ngIf="submitted && f.confirmSenha.errors">
+        <div class= "is-invalid-text" *ngIf="f.confirmSenha.errors?.ConfirmPassword">A senha não é a mesma</div>
+      </div>
+    </div>
+    <div class="btn-confirma text-center">
+      <button class="btn btn-primary btn-block" type="submit">Confirmar</button>
+    </div>
+  </form>
+</div>

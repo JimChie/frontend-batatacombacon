@@ -1,6 +1,6 @@
 import { ContatoModule } from './contato.module';
 
-describe('ContatoModule', () => {
+xdescribe('ContatoModule', () => {
   let contatoModule: ContatoModule;
 
   beforeEach(() => {
